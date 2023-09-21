@@ -10,41 +10,40 @@ Original by Kyle Xu , with code from Amos (?)
 TODO: Need to replicate (Docker?)
 TODO: Need to clean-up
 
-## Materials
-1. Need usb webcam
-2. External monitor
-3. Give sensor POLAR varity sensor to user, turn on.
-	- If changed, we need to change the mac adress test.py, can be found in bluetooth settings. 
+# Materials
+1. USB webcam
+2. A external monitor must be plugged in
+3. The POLAR varity sensor, worn by the user. It must be worn, added on Bluetooth devices and turned on.
+	- If changed, we need to change the mac adress test.py, can be found in bluetooth settings.
+4. The Pepper robot, connected **only** via WiFi. Say "Open settings" to check for connected network. 
 
-## Running
-4 files on github
+# Running
 
-1. Initiate the one with flasks (acts as a server)
-2. Run choreographe, connect to Pepper
-3. Make sure that Pepper and computer are connected to the same network (i.e. wifi)
-4. In a terminal window, run `Python3.8 app.py`
-	1. Copy internet address (IP to test.py) and paste to replace all mentions to url
-	2. Copy also to `Arm_angle3.py`
-	3. Adjust age of user in test.py
-	4. Adjust data directory to record data to and csv filename.
-5. In a separate terminal, run  `test.py` -> This records everything, but starts with the heartrate.
-	1. Check port of the usb camera. 
+1. **Connection**
+	- Run ```Python3.8 01_flask_server.py```. This will start the flask server. Make note of the *IP address for mediapipe communication* (Final "Running on http://**IP**:5000"). If the Pepper its connected, it will also output its IP address
+	- Run choreographe, connect to only Pepper via WiFi, make note of the _IP to Pepper_.
 
-Closing app.py will stop everything.
+2. **Update IP addresses**
+	- Open the file "02_kinematics_visuals.py" and update ```mediapipe_url``` with the above value. ```Video_port``` corresponds to the webcam, with 0 being the laptop default one. This might need to be changed if multiple cams are connected, but 1 or 2 are usually correct.
+ 	- On Choreographe, open the file PepperExerciseRoutine.pml and double click the only block (testpepper) to open the code editor. Update ```pepper_url``` and ```mediapipe_url```.
+	- If testing, adjust data of user in "03_record_user.py".  Adjust data directory to record data to and csv filename.
+	
+3. **Running**
+ 	- Run `Python3.8 02_kinematics_visuals.py`. A blue window should open.
+ 	- On Choreographe, press the play button. This will start the activity and video on the window.   
+	- Run `Python3.8 03_record_user.py`
+	- Stopping The terminal runnin ```01_flask_server.py``` will stop everything.
 
 To start a new session, start from fresh terminals
-
 
 ## Libraries
 
 List included now in scripts
 
-Flask
-Bluepy
+pip install requests requests-unixsocket bluepy flask mediapipe
 
-cv2
-mediapipe
-numpy
+%numpy 
+%cv2
 
 
 
