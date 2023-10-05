@@ -4,12 +4,6 @@ Original by Kyle Xu , with code from Amos (?)
 
 ---
 
-# Instructions
-
-
-TODO: Need to replicate (Docker?)
-TODO: Need to clean-up
-
 # Materials
 1. USB webcam
 2. A external monitor must be plugged in
@@ -36,11 +30,13 @@ TODO: Need to clean-up
 
 To start a new session, start from fresh terminals
 
-## Libraries
+## Requisites
 
 List included now in scripts
 
+```
 pip install requests requests-unixsocket bluepy flask mediapipe
+```
 
 %numpy 
 %cv2
