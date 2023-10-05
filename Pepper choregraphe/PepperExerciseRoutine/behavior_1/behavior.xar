@@ -5,25 +5,11 @@ import qi
 import requests
 import threading
 
-
-
-### This code acts as a bridge between the FLASK server and the Pepper robot
-
-
 pepper_url = "192.168.1.107"
 #mediapipe_url = "192.168.1.134"
+
 mediapipe_url = "192.168.1.151"
 
-
-
-
-
-### Behold spaguetti code!!
-
-
-
-
-### Misterious setup. I believe this are animations in code form, triggered at different points during the interaction.
 def baf():
     leds = ALProxy("ALLeds",pepper_url ,9559)
     leds.off("AllLeds")
@@ -101,6 +87,7 @@ def baf():
     times.append([4.76, 7.96])
     keys.append([[0.293732, [3, -1.6, 0], [3, 1.06667, 0]], [-0.0133807, [3, -1.06667, 0], [3, 0, 0]]])
 
+
     try:
       # uncomment the following line and modify the IP if you use this script outside Choregraphe.
       # motion = ALProxy("ALMotion", pepper_url , 9559, IP, 9559)
@@ -110,9 +97,6 @@ def baf():
       print err
     leds = ALProxy("ALLeds",pepper_url ,9559)
     leds.on("AllLedsGreen")
-
-
-
 def saf():
     leds = ALProxy("ALLeds",pepper_url ,9559)
     leds.off("AllLeds")
@@ -199,8 +183,6 @@ def saf():
       print err
     leds = ALProxy("ALLeds",pepper_url ,9559)
     leds.on("AllLedsGreen")
-
-
 def bfa():
     leds = ALProxy("ALLeds",pepper_url ,9559)
     leds.off("AllLeds")
@@ -286,11 +268,6 @@ def bfa():
       print err
     leds = ALProxy("ALLeds",pepper_url ,9559)
     leds.on("AllLedsGreen")
-
-
-### Play animations while asking questions
-
-
 def bloque_su():
     t0=time.time()
     t1=time.time()
@@ -341,16 +318,11 @@ def bloque_baf():
         if stop_flag:
           break
 
-
-### Communication with the FLASK server
-
 def read_message():
     # Read the message from the online source
     response = requests.get(message_url )
     message = response.text.strip()
     return message
-
-# Load feedback from the server
 def read_movement():
     # Read the movement from the online source
     response = requests.get(movement_url )
@@ -367,11 +339,6 @@ def read_counting():
     response = requests.get(counting_url )
     counting = response.text.strip()
     return counting
-
-
-### Explain exercise 1, then give feedback to the user.
-# Feedback is loaded every loop via read_movement(), which contains a keyword indicating the user error
-
 def monitorbf():
     #global start_time
     global stop_flag
@@ -458,9 +425,6 @@ def monitorbf():
         except requests.exceptions.RequestException:
             # Error occurred while fetching the message, wait for the next iteration
             time.sleep(1)
-
-
-### Same for exercise 2
 def monitorsf():
     #global start_time
     global stop_flag
@@ -545,8 +509,6 @@ def monitorsf():
         except requests.exceptions.RequestException:
             # Error occurred while fetching the message, wait for the next iteration
             time.sleep(1)
-
-### Exercise 3
 def monitorba():
     #global start_time
     global stop_flag
@@ -629,11 +591,6 @@ def monitorba():
         except requests.exceptions.RequestException:
             # Error occurred while fetching the message, wait for the next iteration
             time.sleep(1)
-
-
-
-
-
 def monitorh():
     global start_time
     global stop_flag
@@ -1584,12 +1541,7 @@ waiting_for_go = False
 wait_flag = False
 start_state = True
 counting = 0
-
-
-### Base choreographe class. This needs to be here for the block to execute inside choreographe
-
 class MyClass(GeneratedClass):
-    # On start up
     def __init__(self):
         GeneratedClass.__init__(self)
 
@@ -1601,16 +1553,12 @@ class MyClass(GeneratedClass):
         # put clean-up code here
         pass
 
-    # When block is activated (User clicks "play" in Choreographe)
     def onInput_onStart(self):
         global stop_flag
         volume = 0.7  # Set the volume level between 0.0 and 1.0
         tts.setVolume(volume)
         tts.setParameter("speed", 90)
-
-        ## I... don't really know why the for loop is here, as it seems it only runs once. Could be from early debug
         for x in range(2):
-            # Run the code above. When done, close the block
             main(x)
             x+=1
             if stop_flag:
