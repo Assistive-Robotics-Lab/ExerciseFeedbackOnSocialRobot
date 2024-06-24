@@ -4,8 +4,8 @@
 This project is based on our research paper titled `Embodied Exercise with Socially Assistive Robots`. The project aims to enhance physical exercise adherence and performance among older adults using a feedback system composed of wearable sensors, a socially assistive robot, a camera, and a screen-based graphical user interface.
 
 ---
-# System Architecture
-The feedback system is composed of four hardware modules:
+# How does it work
+The feedback system is composed of four software modules:
 
 - **Wearable Sensor**: The Polar Verity Sense sensor is attached to the participant’s lower arm, connected wirelessly to the server via Bluetooth to monitor the user's heart rate in real-time.
 - **Socially Assistive Robot**: The NAO and PEPPER robots serve as exercise instructors, providing verbal feedback and demonstrating exercises.
