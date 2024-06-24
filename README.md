@@ -76,7 +76,7 @@ author = {Kyle Xu and Emanuel, Nunez Sardinha and Mohammadhadi Sarajchi and Mari
 doi = {pending},
 month = june,
 title = {{Real-Time Feedback on Older Adults Exercise: A Socially Assistive Robot Coaching System}},
-url = {https://github.com/Assistive-Robotics-Lab/EmbodiedExercise-Kyle},
+url = {https://github.com/Assistive-Robotics-Lab/ExerciseFeedbackOnSocialRobot},
 version = {1.0},
 year = {2024}
 }
